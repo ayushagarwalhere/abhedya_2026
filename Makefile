@@ -1,7 +1,9 @@
 run:
 	go run ./cmd/api/main.go
 
-# this creates the binary executable file at bin/app made by building ./cmd/api
+migrate:
+	go run ./cmd/migrate/main.go
+
 build:
 	go build -o .bin/app .cmd/api
 
