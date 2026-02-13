@@ -3,10 +3,10 @@ package routes
 
 import "github.com/gin-gonic/gin"
 
-func RegisterUserRoutes(r *gin.Engine) {
-	user := r.Group("/user")
+func RegisterAdminRoutes(r *gin.Engine) {
+	admin := r.Group("/admin")
 	{
-		user.GET("/health", func(c *gin.Context) {
+		admin.GET("/health", func(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"status": "ok",
 			})
