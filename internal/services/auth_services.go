@@ -29,3 +29,18 @@ func (s *UserServices) Signup(user *models.User) error {
 	return s.repo.CreateUser(user)
 }
 
+func (s *UserServices) Login(username string, password string) (string, error) {
+	user, err := s.repo.FindUserByName(username)
+	if err != nil {
+		return "", err
+	}
+	if err := utils.CheckHash(password, user.Password); err != nil {
+		return "", err
+	} else {
+		token, err := utils.GenerateJWT(user.ID, user.Role)
+		if err != nil {
+			return "", err
+		}
+		return token, nil
+	}
+}
